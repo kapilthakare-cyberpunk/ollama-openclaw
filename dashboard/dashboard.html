@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🦞 OpenClaw Dashboard</h1>
+      <p class="subtitle">System Overview & Status</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>📊 Status</h2>
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="label">Version</span>
+            <span class="value" id="version">Loading...</span>
+          </div>
+          <div class="stat">
+            <span class="label">Gateway</span>
+            <span class="value" id="gateway-status">Checking...</span>
+          </div>
+          <div class="stat">
+            <span class="label">Last Updated</span>
+            <span class="value" id="last-updated">Loading...</span>
+          </div>
+        </div>
+        <div class="stat" style="margin-top: 16px;">
+          <span class="label">Workspace</span>
+          <span class="value small" id="workspace">Loading...</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔌 Plugins</h2>
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="label">Loaded</span>
+            <span class="value success" id="plugins-loaded">-</span>
+          </div>
+          <div class="stat">
+            <span class="label">Disabled</span>
+            <span class="value warning" id="plugins-disabled">-</span>
+          </div>
+          <div class="stat">
+            <span class="label">Errors</span>
+            <span class="value" id="plugins-errors">-</span>
+          </div>
+        </div>
+        <div class="list-section">
+          <h3>Active Plugins</h3>
+          <ul id="active-plugins" class="item-list"></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧠 Skills</h2>
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="label">Eligible</span>
+            <span class="value success" id="skills-eligible">-</span>
+          </div>
+          <div class="stat">
+            <span class="label">Missing Reqs</span>
+            <span class="value warning" id="skills-missing">-</span>
+          </div>
+          <div class="stat">
+            <span class="label">Blocked</span>
+            <span class="value" id="skills-blocked">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📱 Channels</h2>
+        <div class="channels" id="channels"></div>
+      </div>
+
+      <div class="card full-width">
+        <h2>🤖 Models</h2>
+        <div class="models-grid" id="models-grid"></div>
+      </div>
+
+      <div class="card full-width">
+        <h2>🔐 Auth Profiles</h2>
+        <div class="auth-grid" id="auth-grid"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Auto-refreshes every 30 seconds • <button id="refresh-btn">Refresh Now</button></p>
+      <p class="timestamp">Last updated: <span id="last-refresh">-</span></p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
