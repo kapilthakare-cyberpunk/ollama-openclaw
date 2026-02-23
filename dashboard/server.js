@@ -94,6 +94,9 @@ async function getApiData() {
     provider: profile.provider,
     mode: profile.mode
   }));
+
+  const skillsEntries = configData?.skills?.entries || {};
+  const skillNames = Object.keys(skillsEntries);
   
   return {
     version: configData?.meta?.lastTouchedVersion || 'Unknown',
@@ -109,7 +112,8 @@ async function getApiData() {
     skills: {
       eligible: 36,
       missing: 29,
-      blocked: 0
+      blocked: 0,
+      installed: skillNames.length > 0 ? skillNames : ['notion', 'default-skills']
     },
     channels,
     models,

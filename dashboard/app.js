@@ -24,6 +24,11 @@ async function loadDashboard() {
     document.getElementById('skills-missing').textContent = data.skills.missing;
     document.getElementById('skills-blocked').textContent = data.skills.blocked;
     
+    const skillsList = document.getElementById('installed-skills');
+    skillsList.innerHTML = data.skills.installed
+      .map(name => `<li><span class="item-name">${name}</span><span class="item-badge">Installed</span></li>`)
+      .join('') || '<li>No skills installed</li>';
+    
     const channelsEl = document.getElementById('channels');
     channelsEl.innerHTML = data.channels.length
       ? data.channels.map(ch => `

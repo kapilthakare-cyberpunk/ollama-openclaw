@@ -8,30 +8,63 @@
         "models": [
           {
             "id": "glm-4.7:cloud",
-            "name": "glm-4.7:cloud",
+            "name": "GLM-4.7 Cloud",
             "reasoning": false,
             "input": ["text"],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
             "contextWindow": 131072,
             "maxTokens": 8192
           },
           {
             "id": "llama3.2:latest",
-            "name": "llama3.2:latest",
+            "name": "Llama 3.2",
             "reasoning": false,
             "input": ["text"],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
             "contextWindow": 131072,
+            "maxTokens": 8192
+          },
+          {
+            "id": "llama3.2:3b",
+            "name": "Llama 3.2 3B",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen2.5-coder:1.5b",
+            "name": "Qwen 2.5 Coder",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "qwen-portal": {
+        "baseUrl": "https://portal.qwen.ai/v1",
+        "apiKey": "qwen-oauth",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "coder-model",
+            "name": "Qwen Coder",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "vision-model",
+            "name": "Qwen Vision",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 128000,
             "maxTokens": 8192
           }
         ]
@@ -42,23 +75,24 @@
     "defaults": {
       "model": {
         "primary": "ollama/glm-4.7:cloud",
-        "fallback": "ollama/llama3.2:latest"
+        "fallback": "qwen-portal/coder-model"
+      },
+      "models": {
+        "ollama/glm-4.7:cloud": { "alias": "GLM" },
+        "ollama/llama3.2:latest": { "alias": "Llama" },
+        "ollama/llama3.2:3b": { "alias": "Llama-3B" },
+        "ollama/qwen2.5-coder:1.5b": { "alias": "Qwen-Coder" },
+        "qwen-portal/coder-model": { "alias": "qwen" }
       },
       "workspace": "~/.openclaw/workspace",
       "maxConcurrent": 4,
-      "subagents": {
-        "maxConcurrent": 8
-      }
+      "subagents": { "maxConcurrent": 8 }
     }
   },
   "tools": {
     "web": {
-      "search": {
-        "enabled": false
-      },
-      "fetch": {
-        "enabled": true
-      }
+      "search": { "enabled": false },
+      "fetch": { "enabled": true }
     }
   }
 }
